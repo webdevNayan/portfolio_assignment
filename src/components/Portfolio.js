@@ -11,8 +11,7 @@ const Portfolio = () => {
    useEffect(() => {
       dataImage();
       portfolioHover();
-   }, []);
-
+   }, [])
    // Isotope
    const isotope = useRef();
    const [filterKey, setFilterKey] = useState("*");
