@@ -30,7 +30,7 @@ const Partners = ({ dark }) => {
                         alt="image"
                       />
                       {/* <span> {data.platform} </span> */}
-                      <a className="dizme_tm_full_link" a="" href="/" />
+                      {/* <a className="dizme_tm_full_link"  href="/" /> */}
                     </div>
                   </li>
                 ))}
