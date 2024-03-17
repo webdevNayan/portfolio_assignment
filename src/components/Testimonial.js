@@ -13,10 +13,8 @@ SwiperCore.use([Pagination, Navigation, EffectFade, Autoplay]);
 const Testimonial = () => {
   const [data, setData] = useState([]);
 
-  //importing  data from store
-
-  const  testimonials  = useSelector((state) => state.user?.user?.user?.testimonials) || [];
-
+  // Importing data from store
+  const testimonials = useSelector((state) => state.user?.user?.user?.testimonials) || [];
 
   const props = {
     slidesPerView: 1,
@@ -42,102 +40,76 @@ const Testimonial = () => {
           <div className="total">
             <div className="in">
               <Swiper {...props} className="">
-                {testimonials &&
-                  testimonials.map((data, i) => (
-                    <SwiperSlide key={i}>
-                      <div className="icon">
-                        <svg
-                          xmlns="http://www.w3.org/2000/svg"
-                          xmlnsXlink="http://www.w3.org/1999/xlink"
-                          version="1.1"
-                          id="Layer_1"
-                          x="0px"
-                          y="0px"
-                          width="200px"
-                          height="200px"
-                          viewBox="796 698 200 200"
-                          enableBackground="new 796 698 200 200"
-                          xmlSpace="preserve"
-                          className="svg replaced-svg"
-                        >
-                          <g>
-                            <path d="M885.208,749.739v-40.948C836.019,708.791,796,748.81,796,798v89.209h89.208V798h-48.26   C836.948,771.39,858.598,749.739,885.208,749.739z" />
-                            <path d="M996,749.739v-40.948c-49.19,0-89.209,40.019-89.209,89.209v89.209H996V798h-48.26   C947.74,771.39,969.39,749.739,996,749.739z" />
-                          </g>
-                        </svg>
-                      </div>
-                      <div className="text">
-                        <p>{data.review}</p>
-                      </div>
-                      <div className="short">
+                {testimonials.map((data, i) => (
+                  <SwiperSlide key={i}>
+                    <div className="icon">
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        xmlnsXlink="http://www.w3.org/1999/xlink"
+                        version="1.1"
+                        id="Layer_1"
+                        x="0px"
+                        y="0px"
+                        width="200px"
+                        height="200px"
+                        viewBox="796 698 200 200"
+                        enableBackground="new 796 698 200 200"
+                        xmlSpace="preserve"
+                        className="svg replaced-svg"
+                      >
+                        <g>
+                          <path d="M885.208,749.739v-40.948C836.019,708.791,796,748.81,796,798v89.209h89.208V798h-48.26   C836.948,771.39,858.598,749.739,885.208,749.739z" />
+                          <path d="M996,749.739v-40.948c-49.19,0-89.209,40.019-89.209,89.209v89.209H996V798h-48.26   C947.74,771.39,969.39,749.739,996,749.739z" />
+                        </g>
+                      </svg>
+                    </div>
+                    <div className="text">
+                      <p>{data.review}</p>
+                    </div>
+                    <div className="short">
                       <div className="image">
-                          {data.image && data.image.url && (
-                            <div
-                              className="main"
-                              data-img-url={data.image.url}
-                              style={{ backgroundImage: `url(${data.image.url})` }}
-                            />
-                          )}
-                        </div>
-                        <div className="detail">
-                          <h3>{data.name}</h3>
-                          <span>{data.position}</span>
-                        </div>
+                        {data.image && data.image.url && (
+                          <div
+                            className="main"
+                            data-img-url={data.image.url}
+                            style={{ backgroundImage: `url(${data.image.url})` }}
+                          />
+                        )}
                       </div>
-                    </SwiperSlide>
-                  ))}
+                      <div className="detail">
+                        <h3>{data.name}</h3>
+                        <span>{data.position}</span>
+                      </div>
+                    </div>
+                  </SwiperSlide>
+                ))}
               </Swiper>
               <div className="owl-dots"></div>
             </div>
             <div className="left_details">
-              <div
-                className="det_image one wow fadeIn"
-                data-wow-duration="1s"
-                data-img-url="img/testimonials/2.jpg"
-                
-              />
-              <div
-                className="det_image two wow fadeIn"
-                data-wow-duration="1s"
-                data-wow-delay="0.2s"
-                data-img-url="img/testimonials/1.jpg"
-              />
-              <div
-                className="det_image three wow fadeIn"
-                data-wow-duration="1s"
-                data-wow-delay="0.4s"
-                data-img-url="img/testimonials/3.jpg"
-              />
-              <div
-                className="det_image four wow fadeIn"
-                data-wow-duration="1s"
-                data-wow-delay="0.6s"
-                data-img-url="img/testimonials/4.jpg"
-              />
+              {testimonials.map((testimonial, index) => (
+                <div
+                  key={index}
+                  className={`det_image ${index === 0 ? 'one' : index === 1 ? 'two' : index === 2 ? 'three' : 'four'} wow fadeIn`}
+                  data-wow-duration="1s"
+                  data-img-url={testimonial.image && testimonial.image.url}
+                />
+              ))}
               <span className="circle green animPulse" />
               <span className="circle yellow animPulse" />
               <span className="circle border animPulse" />
             </div>
             <div className="right_details">
-              <div
-                className="det_image one wow fadeIn"
-                data-wow-duration="1s"
-                data-img-url="img/testimonials/5.jpg"
-              />
-              <div
-                className="det_image two wow fadeIn"
-                data-wow-duration="1s"
-                data-wow-delay="0.2s"
-                data-img-url="img/testimonials/6.jpg"
-              />
-              <div
-                className="det_image three wow fadeIn"
-                data-wow-duration="1s"
-                data-wow-delay="0.4s"
-                data-img-url="img/testimonials/7.jpg"
-              />
+            {testimonials.map((testimonial, index) => (
+                <div
+                  key={index}
+                  className={`det_image ${index === 0 ? 'one' : index === 1 ? 'two' : index === 2 ? 'three' : 'four'} wow fadeIn`}
+                  data-wow-duration="1s"
+                  data-img-url={testimonial.image && testimonial.image.url}
+                />
+              ))}
+              <span className="circle green animPulse" />
               <span className="circle yellow animPulse" />
-              <span className="circle purple animPulse" />
               <span className="circle border animPulse" />
             </div>
           </div>
@@ -145,10 +117,10 @@ const Testimonial = () => {
         <div className="brush_1 wow fadeInRight" data-wow-duration="1s">
           <img src="img/brushes/testimonials/1.png" alt="image" />Here it is
           {/* <img src={data.image.url} alt="image" /> */}
-
         </div>
       </div>
     </div>
   );
 };
+
 export default Testimonial;

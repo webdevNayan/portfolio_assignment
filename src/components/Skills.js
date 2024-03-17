@@ -8,13 +8,16 @@ const Skills = ({ dark }) => {
 
   // Add scroll event listener to track skill progress
   useEffect(() => {
-    window.addEventListener("scroll", activeSkillProgress);
 
+    window.addEventListener("scroll", activeSkillProgress);
+   
     // Cleanup function
     return () => {
       window.removeEventListener("scroll", activeSkillProgress);
     };
+
   }, []);
+
 
   // Function to determine color based on skill proficiency percentage
   const getColor = (percentage) => {
