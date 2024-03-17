@@ -5,50 +5,34 @@ import { dataImage, portfolioHover } from "../utilits";
 import DetailsPopup from "./popup/DetailsPopup";
 
 const Portfolio = () => {
-   // Importing data from the redux toolkit store
    const projects = useSelector((state) => state.user?.user?.user?.projects) || [];
+   
+   // Add popup state variable
+   const [popup, setPopup] = useState(false);
 
    useEffect(() => {
       dataImage();
       portfolioHover();
-   }, [])
-   // Isotope
-   const isotope = useRef();
-   const [filterKey, setFilterKey] = useState("*");
-   useEffect(() => {
-      setTimeout(() => {
-         isotope.current = new Isotope(".gallery_zoom", {
-            itemSelector: ".grid-item",
-            percentPosition: true,
-            masonry: {
-               columnWidth: ".grid-item",
-            },
-            animationOptions: {
-               duration: 750,
-               easing: "linear",
-               queue: false,
-            },
-         });
-      }, 500);
-      return () => isotope.current.destroy();
    }, []);
+
+   const isotope = useRef(null);
+   const [filterKey, setFilterKey] = useState("*");
+
    useEffect(() => {
       if (isotope.current) {
-         filterKey === "*"
-            ? isotope.current.arrange({ filter: `*` })
-            : isotope.current.arrange({ filter: `.${filterKey}` });
+         isotope.current.arrange({ filter: `.${filterKey}` });
       }
    }, [filterKey]);
+
    const handleFilterKeyChange = (key) => () => {
       setFilterKey(key);
    };
-   const activeBtn = (value) => (value === filterKey ? "current" : "");
 
-   // Popup
-   const [popup, setPopup] = useState(false);
+   const activeBtn = (value) => (value === filterKey ? "current" : "");
 
    return (
       <div className="dizme_tm_section" id="portfolio">
+         {/* Use popup state variable */}
          <DetailsPopup open={popup} close={() => setPopup(false)} />
          <div className="dizme_tm_portfolio">
             <div className="container">
@@ -62,10 +46,7 @@ const Portfolio = () => {
                <div className="portfolio_filter">
                   <ul>
                      <li>
-                        <a
-                           className={`c-pointer ${activeBtn("*")}`}
-                           onClick={handleFilterKeyChange("*")}
-                        >
+                        <a className={`c-pointer ${activeBtn("*")}`} onClick={handleFilterKeyChange("*")}>
                            All
                         </a>
                      </li>
@@ -98,7 +79,7 @@ const Portfolio = () => {
                                  data-category={project.techStack.join(" ")}
                               >
                                  <a href="#">
-                                    <img src={project.image.url} alt="image" />
+                                 <img src={project.image.url} alt="image" />
                                     <div className="main" data-img-url={project.image.url} />
                                  </a>
                               </div>
@@ -122,5 +103,7 @@ const Portfolio = () => {
       </div>
    );
 };
+
+
 
 export default Portfolio;
