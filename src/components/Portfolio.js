@@ -13,10 +13,9 @@ const Portfolio = () => {
   useEffect(() => {
     dataImage();
     portfolioHover();
-  }, []);
 
-  useEffect(() => {
     if (projects.length > 0) {
+      // Initialize Isotope when projects data is available
       isotope.current = new Isotope(".grid", {
         itemSelector: ".grid-item",
         layoutMode: "fitRows",
@@ -26,6 +25,7 @@ const Portfolio = () => {
 
   useEffect(() => {
     if (isotope.current) {
+      // Arrange Isotope layout when filterKey or projects data changes
       const iso = isotope.current;
       iso.arrange({ filter: filterKey });
     }

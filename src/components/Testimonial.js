@@ -110,9 +110,10 @@ const Testimonial = () => {
               ))}
               <span className="circle green animPulse" />
               <span className="circle yellow animPulse" />
-              <span className="circle border animPulse" />
+              <span className="circle border animPulse" /> 
             </div>
           </div>
+          
         </div>
         <div className="brush_1 wow fadeInRight" data-wow-duration="1s">
           <img src="img/brushes/testimonials/1.png" alt="image" />Here it is
